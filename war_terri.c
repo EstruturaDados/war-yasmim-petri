@@ -5,14 +5,16 @@
 
 // Estrutura para representar um território
 typedef struct {
-   char nome_territorio[100];
-   char cor_exercito[100];
+   char nome_territorio[30];
+   char cor_exercito[10];
    int numero_tropas;
 } Territorio;
 
-//
+void atacar(Territorio* atacante, Territorio* defensor) {
+   
+}
 int main() {
-   Territorio territorios [5]; // Array para armazenar até 5 territórios
+   
    
    // Variável para armazenar o número de territórios a serem inseridos
    int numero_territorio;
@@ -23,22 +25,31 @@ int main() {
       printf("Numero de territorio excede o limite permitido (5).\n");
       return 1; // Encerra o programa com código de erro
    }
-  
-   // Coletando informações para cada território
+   Territorio*t =
+   (Territorio*)malloc(sizeof(Territorio) * numero_territorio); // Alocação dinâmica de memória para um território
+   if (t == NULL) { 
+      printf("Erro ao alocar memoria para o territorio.\n");
+      return 1; // Encerra o programa com código de erro
+   }
+   // Loop para inserir as informações dos territórios
    for (int i = 0; i < numero_territorio; i++) {
       printf("Digite o nome do territorio %d: ", i + 1);
-      scanf("%s", territorios[i].nome_territorio);
+      scanf("%s", t[i].nome_territorio);
       printf("Digite a cor do exercito %d: ", i + 1);
-      scanf("%d", &territorios[i].cor_exercito);
+      scanf("%s", t[i].cor_exercito);
       printf("Digite o numero de tropas %d: ", i + 1);
-      scanf("%d", &territorios[i].numero_tropas);
+      scanf("%d", &t[i].numero_tropas);
    }
    // Exibindo as informações do território
-   printf("Informacoes dos Territorios cadastrados:\n");
+   printf("-----Informacoes dos Territorios cadastrados:-----\n");
    for (int i = 0; i < numero_territorio; i++) {
-      printf("\033[1;31mNome do Territorio %d: %s\033[0m\n", i + 1, territorios[i].nome_territorio);
-      printf("Cor do Exercito %d: %d\n", i + 1, territorios[i].cor_exercito);
-      printf("Numero de Tropas %d: %d\n", i + 1, territorios[i].numero_tropas);
-   }
+      printf("Nome do Territorio: %s\n",t[i].nome_territorio);
+      printf("Cor do Exercito: %s\n",t[i].cor_exercito);
+      printf("Numero de Tropas: %d\n", t[i].numero_tropas);
+      printf("\n");
+    }
+
+ 
+   free(t); // Liberação da memória alocada para o território
 return 0;
 }
